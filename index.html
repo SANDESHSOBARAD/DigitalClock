@@ -10,23 +10,26 @@
 <body>
     <div id='time'>
         <div class="circle" style="--color: rgb(39, 239, 239);">
+            <div class = "dots hr_dots"></div>
             <svg>
                 <circle cx="70" cy="70" r="70"></circle>
-                <circle cx="70" cy="70" r="70"></circle>
+                <circle cx="70" cy="70" r="70" id ="hh"></circle>
             </svg>
             <div id="hours">00</div>
         </div>
-        <div class="circle" style="--color: rgb(39, 239, 239);">
+        <div class="circle" style="--color: rgb(18, 237, 58);">
+            <div class = "dots min_dots"></div>
             <svg>
                 <circle cx="70" cy="70" r="70"></circle>
-                <circle cx="70" cy="70" r="70"></circle>
+                <circle cx="70" cy="70" r="70" id="mm"></circle>
             </svg>
             <div id="minutes">00</div>
         </div>
-        <div class="circle" style="--color: rgb(39, 239, 239);">
+        <div class="circle" style="--color: rgb(219, 17, 168);">
+            <div class = "dots sec_dots"></div>
             <svg>
                 <circle cx="70" cy="70" r="70"></circle>
-                <circle cx="70" cy="70" r="70"></circle>
+                <circle cx="70" cy="70" r="70" id="ss"></circle>
             </svg>
             <div id="seconds">00</div>
         </div>
@@ -42,7 +45,14 @@
             let minutes = document.getElementById('minutes')
             let seconds = document.getElementById('seconds')
             let ampm = document.getElementById('ampm')
-            
+
+            let hh = document.getElementById('hh');
+            let mm = document.getElementById('mm');
+            let ss = document.getElementById('ss');
+
+            let hr_dots = document.querySelector('.hr_dots');
+            let min_dots = document.querySelector('.min_dots');
+            let sec_dots = document.querySelector('.sec_dots');
 
             let h = new Date().getHours();
             let m = new Date().getMinutes();
@@ -64,6 +74,14 @@
             minutes.innerHTML = m;
             seconds.innerHTML = s;
             ampm.innerHTML = am;
+
+            hh.style.strokeDashoffset = 440 - (440 * h) / 12;
+            mm.style.strokeDashoffset = 440 - (440 * m) / 60;
+            ss.style.strokeDashoffset = 440 - (440 * s) / 60;
+
+            hr_dots.style.transform = `rotate(${h * 30}deg)`;
+            min_dots.style.transform = `rotate(${m * 6}deg`;
+            sec_dots.style.transform = `rotate(${s * 6}deg`;
         })
         
     </script>
